@@ -11,6 +11,7 @@ jobs:
       - aws-cli/setup:
           profile-name: test
       - run: |
+          echo $CIRCLE_BRANCH
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt ./env/
           cd env
