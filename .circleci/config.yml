@@ -4,12 +4,12 @@ orbs:
   aws-cli: circleci/aws-cli@3.1.5
 
 jobs:
-  connect:
-    working_directory: ~/circleci-python
-    docker:
-      - image: "circleci/python:3.6.4"
+  aws-cli-example:
+    executor: aws-cli/default
     steps:
       - checkout
+      - aws-cli/setup:
+          profile-name: test
       - run: aws s3 ls
   build:
     working_directory: ~/circleci-python
