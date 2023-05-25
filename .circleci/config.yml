@@ -12,11 +12,13 @@ jobs:
           profile-name: test
       - run: |
           
-          if [[ $CIRCLE_BRANCH == "dev" ]]; then export PATH_TO_DEV=dev/dev.txt; fi
+          if [[ $CIRCLE_BRANCH == "dev" ]]; then export PATH_TO_ENV=dev/dev.txt; 
+          elif[[ $CIRCLE_BRANCH == "stg" ]]; then export PATH_TO_ENV=stg/stg.txt;
+          elif[[ $CIRCLE_BRANCH == "prod" ]]; then export PATH_TO_ENV=prod/prod.txt;
+
           mkdir env
-          aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_DEV ./env/
+          aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_ENV ./env/
           cd env
-          pwd
       - persist_to_workspace:
           root: env
           paths: dev.txt
