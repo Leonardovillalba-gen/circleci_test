@@ -11,7 +11,8 @@ jobs:
       - aws-cli/setup:
           profile-name: test
       - run: |
-          ls /home/circleci/project
+          aws s3 cp s3://my-bucket-from-github-c436186/dev/ .
+          ls
 #      - persist_to_workspace:
 #          root: workspace
 #          paths: workspace/env/dev
