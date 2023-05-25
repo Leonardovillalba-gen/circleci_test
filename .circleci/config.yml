@@ -11,7 +11,7 @@ jobs:
       - aws-cli/setup:
           profile-name: test
       - run: |
-          aws s3 cp s3://my-bucket-from-github-c436186/dev/ .
+          aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.tex .
           ls
 #      - persist_to_workspace:
 #          root: workspace
