@@ -18,6 +18,7 @@ jobs:
       - persist_to_workspace:
           root: env
           paths: dev.txt
+
   build:
     working_directory: ~/circleci-python
     docker:
@@ -25,11 +26,14 @@ jobs:
     steps:
       - checkout
       - run: python3 main.py
+
   test:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
+      - attach_workspace:
+          at: /temp/env
       - checkout
       - run: |
           python3 main-test.py
