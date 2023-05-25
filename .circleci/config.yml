@@ -12,7 +12,7 @@ jobs:
           profile-name: test
       - run: |
           
-          if [[ $CIRCLE_BRANCH == dev ]]; export PATH_TO_DEV=dev/dev.txt
+          if [[ $CIRCLE_BRANCH == dev ]]; then export PATH_TO_DEV=dev/dev.txt
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_DEV ./env/
           cd env
