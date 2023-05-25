@@ -37,6 +37,7 @@ jobs:
             ls env
             python3 main.py
 
+
   test:
     working_directory: ~/circleci-python
     docker:
@@ -46,6 +47,7 @@ jobs:
       - run:
           name: Run Tests
           command: python3 main-test.py
+
 
 workflows:
   build_and_test:
