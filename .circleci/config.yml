@@ -13,7 +13,7 @@ jobs:
       - run: |
           if [[ $CIRCLE_BRANCH == "dev" ]]; then export PATH_TO_ENV=dev/dev.txt;
           elif [[ $CIRCLE_BRANCH == "stg" ]]; then export PATH_TO_ENV=stg/stg.txt;
-          elif [[ $CIRCLE_BRANCH == "prod" ]]; then export PATH_TO_ENV=prod/prod.txt; fi
+          elif [[ $CIRCLE_BRANCH == "master" ]]; then export PATH_TO_ENV=prod/prod.txt; fi
 
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_ENV ./env/
