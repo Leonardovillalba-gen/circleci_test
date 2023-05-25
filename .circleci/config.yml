@@ -17,7 +17,7 @@ jobs:
           pwd
       - persist_to_workspace:
           root: env
-          paths: env/dev.txt
+          paths: dev.txt
   build:
     working_directory: ~/circleci-python
     docker:
