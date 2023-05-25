@@ -33,7 +33,7 @@ jobs:
       - checkout
       - run: |
           python3 main-test.py
-#          cat /tmp/workspace/env/dev
+          cat /tmp/env/dev.txt
 
 workflows:
   build_and_test:
