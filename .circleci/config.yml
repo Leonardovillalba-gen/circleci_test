@@ -4,7 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@3.1.5
 
 jobs:
-  aws-cli-example:
+  connect:
     executor: aws-cli/default
     steps:
       - checkout
