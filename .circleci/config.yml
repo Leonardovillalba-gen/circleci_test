@@ -21,7 +21,7 @@ jobs:
           cd env
       - persist_to_workspace:
           root: env
-          paths: $PATH_TO_ENV
+          paths: ${PATH_TO_ENV}
 
   build:
     working_directory: ~/circleci-python
