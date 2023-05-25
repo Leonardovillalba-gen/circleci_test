@@ -28,7 +28,7 @@ jobs:
       - attach_workspace:
           at: circleci-python/env 
       - run: |
-          ls
+          ls circleci-python/env
           python3 main.py
       
 
@@ -45,7 +45,9 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - connect
+      - connect:
+          requires:
+            - connect
       - build
       - test:
           requires:
