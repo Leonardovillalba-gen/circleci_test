@@ -45,10 +45,10 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - connect:
+      - connect
+      - build:
           requires:
             - connect
-      - build
       - test:
           requires:
             - build
