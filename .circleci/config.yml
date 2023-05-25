@@ -11,7 +11,9 @@ jobs:
       - aws-cli/setup:
           profile-name: test
       - run: |
-          aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt .
+          mkdir env
+          aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt ./env/
+          cd env
           ls
 #      - persist_to_workspace:
 #          root: workspace
