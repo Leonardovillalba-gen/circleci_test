@@ -10,7 +10,10 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: test
-      - run: aws s3 ls
+      - run: aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt workspace/env/
+      - persist_to_workspace:
+          root: workspace
+          paths: workspace/env/dev
   build:
     working_directory: ~/circleci-python
     docker:
@@ -24,7 +27,9 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: python3 main-test.py
+      - run: |
+          python3 main-test.py
+          cat /tmp/workspace/env/dev
 
 workflows:
   build_and_test:
