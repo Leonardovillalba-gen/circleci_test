@@ -13,11 +13,9 @@ jobs:
       - run: |
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt ./env/
-          cd env
-          ls
-#      - persist_to_workspace:
-#          root: workspace
-#          paths: workspace/env/dev
+      - persist_to_workspace:
+          root: env
+          paths: env/dev
   build:
     working_directory: ~/circleci-python
     docker:
