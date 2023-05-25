@@ -18,10 +18,10 @@ jobs:
 
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_ENV ./env/
-          cd env
+          
       - persist_to_workspace:
           root: env
-          paths: ${PATH_TO_ENV}
+          paths: ./env
 
   build:
     working_directory: ~/circleci-python
