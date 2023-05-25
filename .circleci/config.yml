@@ -11,17 +11,17 @@ jobs:
       - aws-cli/setup:
           profile-name: test
       - run: |
-          
-          if [[ $CIRCLE_BRANCH == "dev" ]]; then export PATH_TO_ENV=dev/dev.txt; 
+          if [[ $CIRCLE_BRANCH == "dev" ]]; then export PATH_TO_ENV=dev/dev.txt;
           elif [[ $CIRCLE_BRANCH == "stg" ]]; then export PATH_TO_ENV=stg/stg.txt;
           elif [[ $CIRCLE_BRANCH == "prod" ]]; then export PATH_TO_ENV=prod/prod.txt; fi
 
           mkdir env
           aws s3 cp s3://my-bucket-from-github-c436186/$PATH_TO_ENV ./env/
-          
+
       - persist_to_workspace:
-          root: env
-          paths: ./env
+          root: .
+          paths:
+            - env
 
   build:
     working_directory: ~/circleci-python
@@ -30,21 +30,22 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: circleci-python/env 
-      - run: |
-          ls circleci-python/env
-          python3 main.py
-      
+          at: .
+      - run:
+          name: List Files in env Directory
+          command: |
+            ls env
+            python3 main.py
 
   test:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
-      - checkout 
-      - run: |
-          python3 main-test.py
-          
+      - checkout
+      - run:
+          name: Run Tests
+          command: python3 main-test.py
 
 workflows:
   build_and_test:
