@@ -1,6 +1,14 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@3.1.5
+
 jobs:
+  connect:
+    working_directory: ~/circleci-python
+    steps:
+      - checkout
+      - run: aws s3 ls
   build:
     working_directory: ~/circleci-python
     docker:
@@ -19,6 +27,7 @@ jobs:
 workflows:
   build_and_test:
     jobs:
+      - connect
       - build
       - test:
           requires:
