@@ -10,7 +10,9 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: test
-      - run: aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt workspace/env/
+      - run: |
+          mkdir -p /workspace
+          aws s3 cp s3://my-bucket-from-github-c436186/dev/dev.txt workspace/env/
       - persist_to_workspace:
           root: workspace
           paths: workspace/env/dev
